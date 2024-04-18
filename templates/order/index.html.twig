@@ -1,0 +1,173 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<style>
+body{
+    margin:0;
+    background-image:url("../../images/background2.jpg") ;
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+header{
+    height:10vh;
+    background-color:black;
+    color:white;
+    margin:0;
+    display:flex;
+}
+h1{
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin:auto;
+    width:94vw;
+    justify-content:center;
+    text-align:center;
+}
+.logo{
+    background-image:url("../../images/logo.png") ;
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position: center;
+    border-radius:50px;
+    width:3vw;
+    margin-top:15px;
+    margin-left:0.1vw;
+}
+.side_logo{
+width:3vw;
+}
+
+.container{
+    height:90vh;
+    margin:0;
+    text-align:center;
+    box-sizing:border-box;
+    justify-content:center;
+    display:flex;
+    flex-wrap: wrap;
+    padding-top:20px;
+}
+.sticker{
+    text-align:center;
+    justify-content:center;
+    width:280px;
+    height:380px;
+    padding:20px;
+}
+img{
+    height:250px;
+    width:280px;
+    border-radius:10px;
+}
+a{
+    height:30px;
+    width:200px;
+    background-color:black;
+    text-decoration:none;
+    color:white;
+    border-radius:10px;
+    text-align:center;
+    display:flex;
+    justify-content:center;
+    font-size:large;
+    margin:auto;
+    margin-top:10px;
+    align-items:center;
+        border:2px solid white;
+}
+p{
+    height:30px;
+    width:100px;
+    background-color:black;
+    color:white;
+    border-radius:10px;
+    text-align:center;
+    display:flex;
+    justify-content:center;
+    font-size:large;
+    margin:auto;
+    margin-top:5px;
+    align-items:center;
+}
+.logout{
+    background-color:red;
+    color:black;
+    font-size:large;
+    height:30px;
+    width:100px;
+    margin:0;
+}
+.log_out{
+    padding-top:10px;
+    text-align:center;
+    justify-content:center;
+}
+form{
+ text-align:center;
+    box-sizing:border-box;
+    justify-content:center;
+    display:flex;
+    flex-wrap: wrap;
+    padding-top:20px;
+}
+input{
+border-radius:10px;
+}
+button{
+ height:30px;
+    width:200px;
+    background-color:black;
+    text-decoration:none;
+    color:white;
+    border-radius:10px;
+    text-align:center;
+    display:flex;
+    justify-content:center;
+    font-size:large;
+    margin:auto;
+    margin-top:10px;
+    align-items:center;
+        border:2px solid white;
+}
+.button{
+width:100vw;
+justify-content:center;
+margin-bottom:50px
+}
+.delete{
+    height:25px;
+    width:100px;
+    background-color:#bd2929;
+    font-size:large;
+}
+.modify{
+    height:25px;
+    width:150px;
+    background-color:#00264c;
+    font-size:large;
+}
+</style>
+<header>
+        <a href="{{path('users',{'id':id})}}" class="logo"></a>
+       <h1>Card!</h1>
+       <div class="side_logo"></div>
+</header>
+<div class="log_out">
+            <center><a class="logout" href="{{path('security_logout')}}">Logout</a></center>
+    </div>
+<div class="container">
+    {% for order in orders %}
+        <div class="sticker">
+            <img src="../../images/stickers/{{order.image}}" alt="{{ order.id }}" >
+            <p>0.700 dt</p>
+            <p>number: {{order.number}}</p>
+            <a class='modify' href="{{path('updateNumber',{'id':order.id,'id1':id})}}">Modify Number</a>
+            <a class='delete' href="{{path('deleteOrder',{'id':order.id,'id1':id})}}" onclick="return confirm('Are you sure to deletethis item!')">Delete</a>
+        </div>
+    {% endfor %}
+
+    <div class="button"><a href="{{path('order',{'id':id})}}">Order</a></div>
+    
+</div>
+{% endblock %}
